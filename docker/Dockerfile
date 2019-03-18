@@ -14,7 +14,11 @@ RUN set -x && \
     echo "Running one-liner" && \
     wget -O /tmp/oneliner "$( echo "$remote_deploy_script" | sed 's/#/%23/g' )" && \
     chmod 755 /tmp/oneliner && \
-    apt-get install ros-kinetic-rosserial-python && \
+    aptitude install -y -q -R ros-kinetic-rosserial-arduino \
+    ros-kinetic-rosserial-python  \
+    ros-kinetic-rosserial-server  \
+    ros-kinetic-rosserial-client  \
+    ros-kinetic-rosserial-msgs  &&\
     gosu $MY_USERNAME /tmp/oneliner -o ldemk -r rodog -i docker/turtlebot3.rosinstall -b master -v kinetic && \
     \
     echo "Sourcing workspace in .bashrc" && \
