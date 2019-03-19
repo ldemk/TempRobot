@@ -6,6 +6,12 @@ LABEL Description="This ROS Kinetic image containes all dependencies for TurtleB
 
 ENV remote_deploy_script="https://raw.githubusercontent.com/shadow-robot/sr-build-tools/$toolset_branch/ansible/deploy.sh"
 
+RUN apt-get install -y ros-kinetic-rosserial-arduino \
+    ros-kinetic-rosserial-python  \
+    ros-kinetic-rosserial-server  \
+    ros-kinetic-rosserial-client  \
+    ros-kinetic-rosserial-msgs
+
 RUN set -x && \
     \
     echo "Removing workspace folder" && \
@@ -22,12 +28,6 @@ RUN set -x && \
     echo "Removing cache" && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /home/$MY_USERNAME/.ansible /home/$MY_USERNAME/.gitconfig
-
-RUN gosu $MY_USERNAME apt-get install -y ros-kinetic-rosserial-arduino \
-    ros-kinetic-rosserial-python  \
-    ros-kinetic-rosserial-server  \
-    ros-kinetic-rosserial-client  \
-    ros-kinetic-rosserial-msgs
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
