@@ -14,11 +14,6 @@ RUN set -x && \
     echo "Running one-liner" && \
     wget -O /tmp/oneliner "$( echo "$remote_deploy_script" | sed 's/#/%23/g' )" && \
     chmod 755 /tmp/oneliner && \
-    apt-get install -y ros-kinetic-rosserial-arduino \
-    ros-kinetic-rosserial-python  \
-    ros-kinetic-rosserial-server  \
-    ros-kinetic-rosserial-client  \
-    ros-kinetic-rosserial-msgs  &&\
     gosu $MY_USERNAME /tmp/oneliner -o ldemk -r rodog -i docker/turtlebot3.rosinstall -b master -v kinetic && \
     \
     echo "Sourcing workspace in .bashrc" && \
@@ -27,6 +22,12 @@ RUN set -x && \
     echo "Removing cache" && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /home/$MY_USERNAME/.ansible /home/$MY_USERNAME/.gitconfig
+
+RUN gosu $MY_USERNAME apt-get install -y ros-kinetic-rosserial-arduino \
+    ros-kinetic-rosserial-python  \
+    ros-kinetic-rosserial-server  \
+    ros-kinetic-rosserial-client  \
+    ros-kinetic-rosserial-msgs
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
