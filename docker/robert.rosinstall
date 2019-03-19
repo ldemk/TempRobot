@@ -1,4 +1,0 @@
-- git:
-    uri: https://github.com/ldemk/TempRobot.git
-    version: kinetic-devel
-    local-name: rtr
