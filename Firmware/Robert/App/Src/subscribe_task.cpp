@@ -25,6 +25,7 @@ void led_cb(const std_msgs::UInt16& cmd_msg)
 
 }
 
+
 void ROS_SubscribeTaskHandler(void const * argument)
 {
 
@@ -33,7 +34,7 @@ void ROS_SubscribeTaskHandler(void const * argument)
   /* Infinite loop */
   for(;;)
   {
-	  osDelay(100);
+	  osDelay(1000);
   }
   /* USER CODE END ROS_SpinTaskHandler */
 }
@@ -46,9 +47,10 @@ uint32_t subscribeInitTask(ros::NodeHandle *nh)
 
 	 nh_ = nh;
 	 nh_->subscribe(sub_led);
+	 osDelay(1);
 
 	 /* definition and creation of ROS_SpinTask */
-	 osThreadDef(ROS_SubscribeTask, ROS_SubscribeTaskHandler, osPriorityIdle, 0, 128);
+	 osThreadDef(ROS_SubscribeTask, ROS_SubscribeTaskHandler, osPriorityNormal, 0, 128);
 	 ROS_SubscribeTaskHandle = osThreadCreate(osThread(ROS_SubscribeTask), NULL);
 	 if (NULL == ROS_SubscribeTaskHandle)
 	 {
