@@ -28,7 +28,7 @@ RUN set -x && \
     gosu $MY_USERNAME /tmp/oneliner -o ldemk -r temprobot -b master -v kinetic && \
     \
     echo "Sourcing workspace in .bashrc" && \
-    echo 'source /home/$MY_USERNAME/workspace/robert/base/devel/setup.bash' >> /home/$MY_USERNAME/.bashrc && \
+    echo 'source /home/$MY_USERNAME/workspace/temprobot/base/devel/setup.bash' >> /home/$MY_USERNAME/.bashrc && \
     \
     echo "Removing cache" && \
     apt-get clean && \
