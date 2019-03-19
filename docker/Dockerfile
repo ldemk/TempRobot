@@ -6,13 +6,18 @@ LABEL Description="This ROS Kinetic image containes all dependencies for TurtleB
 
 ENV remote_deploy_script="https://raw.githubusercontent.com/shadow-robot/sr-build-tools/$toolset_branch/ansible/deploy.sh"
 
-RUN apt-get install -y ros-kinetic-rosserial-arduino \
+
+
+RUN set -x && \
+    \
+    apt-get update && \
+    apt-get upgrade && \
+    \
+    apt-get install -y ros-kinetic-rosserial-arduino \
     ros-kinetic-rosserial-python  \
     ros-kinetic-rosserial-server  \
     ros-kinetic-rosserial-client  \
-    ros-kinetic-rosserial-msgs
-
-RUN set -x && \
+    ros-kinetic-rosserial-msgs && \
     \
     echo "Removing workspace folder" && \
     rm -rf /home/$MY_USERNAME/workspace && \
