@@ -14,7 +14,7 @@ RUN set -x && \
     echo "Running one-liner" && \
     wget -O /tmp/oneliner "$( echo "$remote_deploy_script" | sed 's/#/%23/g' )" && \
     chmod 755 /tmp/oneliner && \
-    aptitude install -y -q -R ros-kinetic-rosserial-arduino \
+    apt-get install -y -q -R ros-kinetic-rosserial-arduino \
     ros-kinetic-rosserial-python  \
     ros-kinetic-rosserial-server  \
     ros-kinetic-rosserial-client  \
