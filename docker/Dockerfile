@@ -10,8 +10,8 @@ ENV remote_deploy_script="https://raw.githubusercontent.com/shadow-robot/sr-buil
 
 RUN set -x && \
     \
-    apt-get update && \
-    apt-get upgrade && \
+    apt-get update -y && \
+    apt-get upgrade -y --no-install-recommends && \
     \
     apt-get install -y ros-kinetic-rosserial-arduino \
     ros-kinetic-rosserial-python  \
