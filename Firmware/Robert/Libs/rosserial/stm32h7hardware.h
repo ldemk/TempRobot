@@ -76,7 +76,7 @@ public:
 		}
 		else
 		{
-			USART3->RDR;
+			data = USART3->RDR;
 		}
 
 		return data;
